@@ -26,8 +26,13 @@ def index():
 
 @app.route('/showSummary',methods=['POST'])
 def showSummary():
-    club = [club for club in clubs if club['email'] == request.form['email']][0]
-    return render_template('welcome.html',club=club,competitions=competitions)
+    
+    club = [club for club in clubs if club['email'] == request.form['email']]
+    if not club:
+        flash("No club found with this email")
+        return render_template('index.html')
+    else:
+        return render_template('welcome.html',club=club[0],competitions=competitions)
 
 
 @app.route('/book/<competition>/<club>')
