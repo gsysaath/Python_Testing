@@ -18,11 +18,11 @@
         Points available: {{club['points']}}
         <h3>Competitions:</h3>
         <ul>
-       {% for message in messages %}
+        {% for message in messages %}
             <li>{{ message }}</li>
         {% endfor %}
        </ul>
-    {% endif%}
+    {% endwith%}
     Points available: {{ club['points'] }}
     To check the point balance of other clubs, please see our <a href="{{ url_for('full_display') }}">full club display</a>.
     <h3>Competitions:</h3>
@@ -39,9 +39,8 @@
                 {% endif %}
             </li>
             <hr />
-            {% endfor %}
-        </ul>
-    {% endwith %}
+        {% endfor %}
+    </ul>
 
 </body>
 </html>
