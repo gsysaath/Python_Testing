@@ -1,7 +1,7 @@
 import datetime
 import json
 
-from flask import Flask, flash, redirect, render_template, request, url_for
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 
 
 def load_clubs():
@@ -36,6 +36,8 @@ def show_summary():
         flash("No club found with this email")
         return render_template("index.html")
     else:
+        session.clear()
+        session["user_id"] = club[0]["email"]
         past_competitions = [
             comp
             for comp in competitions
@@ -94,4 +96,5 @@ def purchase_places():
 
 @app.route("/logout")
 def logout():
+    session.clear()
     return redirect(url_for("index"))
