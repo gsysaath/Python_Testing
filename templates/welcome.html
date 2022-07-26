@@ -5,7 +5,7 @@
     <title>Summary | GUDLFT Registration</title>
 </head>
 <body>
-        <h2>Welcome, {{club['email']}} </h2><a href="{{ url_for('logout') }}">Logout</a>
+        <h2>Welcome, {{ club['email'] }} </h2><a href="{{ url_for('logout') }}">Logout</a>
 
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -18,7 +18,16 @@
         Points available: {{club['points']}}
         <h3>Competitions:</h3>
         <ul>
-            {% for comp in competitions %}
+       {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+       </ul>
+    {% endif%}
+    Points available: {{ club['points'] }}
+    To check the point balance of other clubs, please see our <a href="{{ url_for('full_display') }}">full club display</a>.
+    <h3>Competitions:</h3>
+    <ul>
+        {% for comp in competitions %}
             <li>
                 {{comp['name']}}<br />
                 Date: {{comp['date']}}</br>
